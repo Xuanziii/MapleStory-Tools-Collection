@@ -45,5 +45,29 @@
         menuBtn.setAttribute('aria-expanded', String(isOpen));
       });
     }
+
+    const dropdown = document.getElementById('tools-dropdown');
+    const dropdownToggle = document.getElementById('tools-dropdown-toggle');
+    if (dropdown && dropdownToggle) {
+      dropdownToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        dropdownToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+          dropdownToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          dropdown.classList.remove('open');
+          dropdownToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   });
 })();

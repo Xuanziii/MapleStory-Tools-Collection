@@ -95,20 +95,11 @@ a {
 .brand {
   font-size: 1.125rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
   color: var(--text);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   white-space: nowrap;
-}
-
-.brand-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent);
-  display: inline-block;
 }
 
 .nav-right {
@@ -144,6 +135,92 @@ a {
 }
 
 .nav-link.active {
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  font-weight: 600;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle {
+  color: var(--text);
+  background-color: var(--bg-subtle);
+}
+
+.nav-dropdown-toggle.active {
+  color: var(--accent);
+  background-color: var(--accent-soft);
+  font-weight: 600;
+}
+
+.nav-dropdown-chevron {
+  transition: transform 0.15s ease;
+}
+
+.nav-dropdown.open .nav-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 210px;
+  padding: 6px;
+  list-style: none;
+  margin: 0;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: 60;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.15s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+  color: var(--text);
+  background-color: var(--bg-subtle);
+}
+
+.nav-dropdown-item.active {
   color: var(--accent);
   background-color: var(--accent-soft);
   font-weight: 600;
@@ -525,5 +602,20 @@ a {
 
   .nav-link {
     padding: 10px 12px;
+  }
+
+  .nav-dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 12px;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    margin-top: 4px;
+    padding: 4px 0 4px 12px;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
   }
 }

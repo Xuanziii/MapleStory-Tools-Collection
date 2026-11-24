@@ -13,15 +13,21 @@
 <body>
   <header class="navbar">
     <div class="navbar-inner">
-      <a href="./index.html" class="brand">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <span>MapleStoryTools</span>
-      </a>
+      <a href="./index.html" class="brand">MapleStoryTools</a>
 
       <nav class="nav-right" aria-label="主導覽列">
         <ul id="nav-links" class="nav-links">
-          <li><a href="./index.html" class="nav-link active">首頁</a></li>
-          <li><a href="./gear-gain.html" class="nav-link">裝備提升收益計算器</a></li>
+          <li id="tools-dropdown" class="nav-dropdown">
+            <button id="tools-dropdown-toggle" class="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+              <span>工具列表</span>
+              <svg class="nav-dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul class="nav-dropdown-menu" aria-label="工具列表子選單">
+              <li><a href="./gear-gain.html" class="nav-dropdown-item">裝備提升收益計算器</a></li>
+            </ul>
+          </li>
         </ul>
 
         <button id="theme-toggle" class="icon-btn" type="button" aria-label="切換深色或淺色模式">
