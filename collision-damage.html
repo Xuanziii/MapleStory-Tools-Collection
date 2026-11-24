@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>碰撞傷害計算器 | MapleStoryTools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script src="./assets/theme.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="./index.html" class="brand">MapleStoryTools</a>
+
+      <nav class="nav-right" aria-label="主導覽列">
+        <ul id="nav-links" class="nav-links">
+          <li id="tools-dropdown" class="nav-dropdown">
+            <button id="tools-dropdown-toggle" class="nav-dropdown-toggle active" type="button" aria-haspopup="true" aria-expanded="false">
+              <span>工具列表</span>
+              <svg class="nav-dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul class="nav-dropdown-menu" aria-label="工具列表子選單">
+              <li><a href="./gear-gain.html" class="nav-dropdown-item">裝備提升收益計算器</a></li>
+              <li><a href="./exp-calculator.html" class="nav-dropdown-item">經驗值需求計算器</a></li>
+              <li><a href="./collision-damage.html" class="nav-dropdown-item active">碰撞傷害計算器</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="切換深色或淺色模式">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" type="button" aria-label="開啟選單" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="page-header">
+      <h1 class="page-title">碰撞傷害計算器</h1>
+      <p class="page-subtitle">填入角色屬性與怪物數值，計算被怪物碰撞時的最小與最大物理傷害。</p>
+    </div>
+
+    <div class="calc-layout">
+      <!-- Left Column: Inputs -->
+      <div class="stack">
+        <section class="card" aria-labelledby="player-info-title">
+          <div class="card-header">
+            <h2 id="player-info-title" class="card-title">角色資料</h2>
+            <div class="tabs" role="group" aria-label="職業類型">
+              <button class="tab-btn active" type="button" data-job="warrior">戰士職業</button>
+              <button class="tab-btn" type="button" data-job="other">其他職業</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label class="field-label" for="player-lv">
+                <span>玩家等級</span>
+              </label>
+              <input id="player-lv" class="input" type="number" min="1" max="250" step="1" placeholder="1 - 200" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="player-def">
+                <span>玩家物防</span>
+              </label>
+              <input id="player-def" class="input" type="number" min="0" step="1" placeholder="例如：300" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="stat-str">
+                <span>力量 (STR)</span>
+              </label>
+              <input id="stat-str" class="input" type="number" min="0" step="1" placeholder="0" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="stat-dex">
+                <span>敏捷 (DEX)</span>
+              </label>
+              <input id="stat-dex" class="input" type="number" min="0" step="1" placeholder="0" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="stat-int">
+                <span>智力 (INT)</span>
+              </label>
+              <input id="stat-int" class="input" type="number" min="0" step="1" placeholder="0" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="stat-luk">
+                <span>幸運 (LUK)</span>
+              </label>
+              <input id="stat-luk" class="input" type="number" min="0" step="1" placeholder="0" />
+            </div>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="monster-info-title">
+          <div class="card-header">
+            <h2 id="monster-info-title" class="card-title">怪物與防禦基準</h2>
+            <span class="card-badge accent">碰撞來源</span>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="field">
+              <label class="field-label" for="mob-lv">
+                <span>怪物等級</span>
+              </label>
+              <input id="mob-lv" class="input" type="number" min="1" max="250" step="1" placeholder="例如：100" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="mob-atk">
+                <span>怪物物理攻擊</span>
+              </label>
+              <input id="mob-atk" class="input" type="number" min="0" step="1" placeholder="例如：500" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="base-def">
+                <span>基礎防禦值</span>
+                <span class="field-hint">預設 0</span>
+              </label>
+              <input id="base-def" class="input" type="number" min="0" step="1" placeholder="0" />
+            </div>
+          </div>
+
+          <div class="actions-row">
+            <button id="reset-btn" class="btn" type="button">全部重置</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Output -->
+      <aside class="card result-sticky" aria-labelledby="collision-result-title">
+        <div class="card-header">
+          <h2 id="collision-result-title" class="card-title">被碰傷害預估</h2>
+          <span class="card-badge">即時計算</span>
+        </div>
+
+        <div class="stat-compare-list">
+          <div class="exp-result-box">
+            <div class="exp-result-label">被碰傷害範圍（最小 ～ 最大）</div>
+            <div id="dmg-range" class="exp-result-value accent">0 ～ 0</div>
+            <div id="dmg-note" class="exp-result-sub">請輸入角色與怪物數值</div>
+          </div>
+
+          <div class="stat-compare-item">
+            <div class="stat-compare-top">
+              <span class="stat-name">最小傷害</span>
+              <span class="card-badge">× 0.008</span>
+            </div>
+            <div id="dmg-min" class="stat-after">0</div>
+          </div>
+
+          <div class="stat-compare-item">
+            <div class="stat-compare-top">
+              <span class="stat-name">最大傷害</span>
+              <span class="card-badge">× 0.0085</span>
+            </div>
+            <div id="dmg-max" class="stat-after">0</div>
+          </div>
+        </div>
+
+        <div class="insight-box" aria-label="公式係數明細">
+          <div class="insight-row">
+            <span>係數 A（C + 0.28）</span>
+            <span id="coeff-a" class="insight-val">0.2800</span>
+          </div>
+          <div class="insight-row">
+            <span>係數 B（防禦減傷係數）</span>
+            <span id="coeff-b" class="insight-val">0.0000</span>
+          </div>
+          <div class="insight-row">
+            <span>係數 C（屬性減傷係數）</span>
+            <span id="coeff-c" class="insight-val">0.0000</span>
+          </div>
+          <div class="insight-row">
+            <span>係數 D（等級差係數）</span>
+            <span id="coeff-d" class="insight-val">1.3000</span>
+          </div>
+        </div>
+
+        <div class="formula-note">
+          <div>造成傷害 = <code class="formula-code">怪物物攻² × 隨機(0.008, 0.0085) - 玩家物防 × A - (玩家物防 - 基礎防禦值) × B</code></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span>MapleStoryTools</span>
+  </footer>
+
+  <script src="./assets/collision-damage.js"></script>
+</body>
+</html>
