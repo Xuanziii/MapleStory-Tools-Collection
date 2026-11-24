@@ -46,7 +46,7 @@
       { name: '指虎', min: 4.8, max: 4.8 },
       { name: '火槍', min: 3.6, max: 3.6 },
     ],
-    modern: [
+    ronaworld: [
       { name: '單手劍', min: 0, max: 4 },
       { name: '雙手劍', min: 0, max: 5 },
       { name: '單手斧', min: 0, max: 4.4 },
