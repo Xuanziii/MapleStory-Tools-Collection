@@ -509,6 +509,18 @@ a {
   color: var(--text-muted);
 }
 
+.num-dec {
+  font-size: 0.34em;
+  font-weight: 500;
+  opacity: 0.72;
+  vertical-align: baseline;
+}
+
+.input-flash {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
 .insight-box {
   margin-top: 18px;
   padding: 14px 16px;
@@ -550,6 +562,122 @@ a {
   padding: 2px 6px;
   border-radius: 4px;
   color: var(--text);
+}
+
+/* Weapon Coefficient Reference */
+.weapon-ref-section {
+  margin-top: 24px;
+}
+
+.weapon-ref-header {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.weapon-ref-desc {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.weapon-ref-note {
+  margin: 0 0 16px;
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.tabs {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  gap: 4px;
+}
+
+.tab-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-elevated);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.weapon-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.weapon-table th,
+.weapon-table td {
+  padding: 11px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.weapon-table th {
+  background-color: var(--bg-subtle);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.weapon-table td:not(:first-child),
+.weapon-table th:not(:first-child) {
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+.weapon-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.weapon-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.weapon-table tbody tr:hover {
+  background-color: var(--bg-subtle);
+}
+
+.weapon-table tbody tr.selected {
+  background-color: var(--accent-soft);
+}
+
+.weapon-table tbody tr.selected td:first-child {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.coeff-zero {
+  color: var(--text-muted);
+  opacity: 0.65;
 }
 
 /* Footer */

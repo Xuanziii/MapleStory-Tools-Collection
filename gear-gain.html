@@ -185,21 +185,6 @@
             </div>
             <div id="max-diff" class="stat-diff-sub">變化量：0</div>
           </div>
-
-          <div class="stat-compare-item">
-            <div class="stat-compare-top">
-              <span class="stat-name">平均表攻</span>
-              <span id="avg-pct" class="delta-pill">0.00%</span>
-            </div>
-            <div class="stat-values">
-              <div>
-                <span id="avg-before" class="stat-before">0</span>
-                <span class="stat-arrow">→</span>
-                <span id="avg-after" class="stat-after">0</span>
-              </div>
-            </div>
-            <div id="avg-diff" class="stat-diff-sub">變化量：0</div>
-          </div>
         </div>
 
         <div class="insight-box" aria-label="目前機體等價換算參考">
@@ -219,6 +204,37 @@
         </div>
       </aside>
     </div>
+
+    <!-- Bottom Section: Weapon Coefficient Reference -->
+    <section class="card weapon-ref-section" aria-labelledby="weapon-ref-title">
+      <div class="card-header weapon-ref-header">
+        <div>
+          <h2 id="weapon-ref-title" class="card-title">各版本武器係數參考</h2>
+          <p class="weapon-ref-desc">點擊任一武器列，即可自動將對應的最小／最大係數填入上方欄位。</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="遊戲版本切換">
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-version="artale">Artale</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-version="classic">經典版</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-version="modern">新版</button>
+        </div>
+      </div>
+
+      <p class="weapon-ref-note">註：最小武器係數如果為 0，則是作者沒有資訊所以未填入。</p>
+
+      <div class="table-wrap">
+        <table class="weapon-table">
+          <thead>
+            <tr>
+              <th>武器類型</th>
+              <th>最小係數</th>
+              <th>最大係數</th>
+            </tr>
+          </thead>
+          <tbody id="weapon-table-body"></tbody>
+        </table>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
