@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>經驗值需求計算器 | MapleStoryTools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/style.css" />
+  <script src="./assets/theme.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="./index.html" class="brand">MapleStoryTools</a>
+
+      <nav class="nav-right" aria-label="主導覽列">
+        <ul id="nav-links" class="nav-links">
+          <li id="tools-dropdown" class="nav-dropdown">
+            <button id="tools-dropdown-toggle" class="nav-dropdown-toggle active" type="button" aria-haspopup="true" aria-expanded="false">
+              <span>工具列表</span>
+              <svg class="nav-dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <ul class="nav-dropdown-menu" aria-label="工具列表子選單">
+              <li><a href="./gear-gain.html" class="nav-dropdown-item">裝備提升收益計算器</a></li>
+              <li><a href="./exp-calculator.html" class="nav-dropdown-item active">經驗值需求計算器</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="切換深色或淺色模式">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button id="mobile-menu-toggle" class="icon-btn mobile-menu-btn" type="button" aria-label="開啟選單" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="page-header">
+      <h1 class="page-title">經驗值需求計算器</h1>
+      <p class="page-subtitle">計算 1 ～ 200 等升級所需經驗值、練功效率預估時間與 200 等達成進度。</p>
+    </div>
+
+    <div class="exp-grid">
+      <!-- 需求一：升級效率計算器 -->
+      <section class="card exp-card" aria-labelledby="eff-title">
+        <div class="card-header">
+          <h2 id="eff-title" class="card-title">升級效率計算器</h2>
+          <span class="card-badge accent">效率預估</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label class="field-label" for="eff-current-lv">
+              <span>當前等級</span>
+            </label>
+            <input id="eff-current-lv" class="input" type="number" min="1" max="200" step="1" placeholder="1 - 200" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="eff-target-lv">
+              <span>目標等級</span>
+            </label>
+            <input id="eff-target-lv" class="input" type="number" min="1" max="200" step="1" placeholder="1 - 200" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="eff-current-exp">
+              <span>當前經驗值</span>
+              <span class="field-hint">未填預設為 0</span>
+            </label>
+            <input id="eff-current-exp" class="input" type="number" min="0" step="1" placeholder="0" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="eff-rate">
+              <span>經驗效率</span>
+            </label>
+            <div class="input-with-unit">
+              <input id="eff-rate" class="input" type="number" min="0" step="any" placeholder="輸入獲得經驗值" />
+              <div class="unit-tabs" role="group" aria-label="經驗效率時間單位">
+                <button class="unit-tab" type="button" data-unit="min">每分鐘</button>
+                <button class="unit-tab active" type="button" data-unit="10min">每十分鐘</button>
+                <button class="unit-tab" type="button" data-unit="hour">每小時</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-result-group">
+          <div class="exp-result-box">
+            <div class="exp-result-label">還需經驗值</div>
+            <div id="eff-needed-exp" class="exp-result-value">0</div>
+          </div>
+          <div class="exp-result-box">
+            <div class="exp-result-label">預估升級所需時間</div>
+            <div id="eff-needed-time" class="exp-result-value accent">--</div>
+            <div id="eff-time-note" class="exp-result-sub">請輸入有效等級與經驗效率</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 需求二：簡易經驗需求計算器 -->
+      <section class="card exp-card" aria-labelledby="simple-title">
+        <div class="card-header">
+          <h2 id="simple-title" class="card-title">簡易經驗需求計算器</h2>
+          <span class="card-badge">區間總和</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label class="field-label" for="simple-current-lv">
+              <span>當前等級</span>
+            </label>
+            <input id="simple-current-lv" class="input" type="number" min="1" max="200" step="1" placeholder="1 - 200" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="simple-target-lv">
+              <span>目標等級</span>
+            </label>
+            <input id="simple-target-lv" class="input" type="number" min="1" max="200" step="1" placeholder="1 - 200" />
+          </div>
+        </div>
+
+        <div class="exp-result-group">
+          <div class="exp-result-box">
+            <div class="exp-result-label">區間經驗值需求</div>
+            <div id="simple-needed-exp" class="exp-result-value accent">0</div>
+            <div id="simple-note" class="exp-result-sub">請輸入 1 - 200 的當前與目標等級</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 需求三：200 等達成進度娛樂項目 -->
+    <section class="card milestone-card" aria-labelledby="milestone-title">
+      <div class="card-header">
+        <h2 id="milestone-title" class="card-title">200 等達成進度</h2>
+        <span class="card-badge">經驗佔比</span>
+      </div>
+
+      <div class="milestone-sentence">
+        <span>我現在等級為</span>
+        <input id="milestone-lv-input" class="inline-level-input" type="number" min="1" max="200" step="1" value="1" aria-label="目前等級" />
+        <span>，距離兩百等已經達成</span>
+        <span id="milestone-pct" class="milestone-pct">0.00%</span>
+      </div>
+
+      <div class="progress-track" aria-hidden="true">
+        <div id="milestone-progress-fill" class="progress-fill"></div>
+      </div>
+
+      <div class="slider-wrap">
+        <input id="milestone-slider" class="level-slider" type="range" min="1" max="200" step="1" value="1" aria-label="拖曳選擇等級" />
+        <div class="slider-scale">
+          <span>Lv. 1</span>
+          <span>Lv. 50</span>
+          <span>Lv. 100</span>
+          <span>Lv. 150</span>
+          <span>Lv. 200</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>MapleStoryTools</span>
+  </footer>
+
+  <script src="./assets/exp-calculator.js"></script>
+</body>
+</html>
